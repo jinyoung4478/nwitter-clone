@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import Auth from "../routes/Auth";
-import Home from "../routes/Home";
+import Auth from "routes/Auth";
+import Home from "routes/Home";
 
-const AppRouter = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // eslint-disable-line no-unused-vars
+const AppRouter = ({ isLoggedIn }) => {
     return (
         <Router>
             <Routes>
