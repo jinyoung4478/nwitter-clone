@@ -1,10 +1,16 @@
-import React from "react";
-import firebase from "../firebase";
-import AppRouter from "./Router";
-console.log(firebase);
+import React, { useState } from "react";
+import fbase from "fbase";
+import AppRouter from "components/Router";
 
 function App() {
-  return <AppRouter />;
+  const [isLoggedIn, setIsLoggedIn ] = useState(false);
+  return (
+    <>
+    <AppRouter isLoggedIn={isLoggedIn} />
+    <footer>&copy; Nwitter {new Date().getFullYear()}</footer>
+    </>
+  
+  );
 }
 
 export default App;
