@@ -15,6 +15,7 @@ const Auth = () => {
     };
     const onSubmit = (event) => {
         event.preventDefault();
+        console.log(event);
     };
     return (
         <div>
