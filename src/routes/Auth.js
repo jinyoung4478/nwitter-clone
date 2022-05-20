@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword,
-     signInWithPopup, 
-     createUserWithEmailAndPassword, 
-     GoogleAuthProvider, 
-     GithubAuthProvider 
+    getAuth,
+    signInWithPopup, 
+    createUserWithEmailAndPassword, 
+    GoogleAuthProvider, 
+    GithubAuthProvider 
     } from "firebase/auth";
 import { authService } from "fbase";
 
@@ -42,12 +43,13 @@ const Auth = () => {
             target:{name},
         } = event;
         let provider;
+        const auth = getAuth();
         if(name === "google") {
             provider = new GoogleAuthProvider();
         } else if (name === "github") {
             provider = new GithubAuthProvider();
         }
-        await signInWithPopup(provider);
+        await signInWithPopup(auth, provider);
     }
     return (
         <div>
