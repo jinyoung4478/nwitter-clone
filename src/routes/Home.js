@@ -39,6 +39,7 @@ const Home = ({ userObj }) => {
         <div>
             <form onSubmit={onSubmit}>
                 <input type="text" onChange={onChange} placeholder="What's on your mind?" maxLength={120} />
+                <input type="file" accept="image/*" />
                 <input type="submit" value="Nweet" />
             </form>
             <div>
