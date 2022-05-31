@@ -1,12 +1,14 @@
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
+import { v4 as uuidv4 } from 'uuid';
 import { addDoc, collection, serverTimestamp, query, onSnapshot, orderBy } from "firebase/firestore";
+import { ref, uploadString, getDownloadURL  } from "@firebase/storage";
 import React, { useEffect, useState, useRef } from "react";
 import Nweet from "components/Nweet";
 
 const Home = ({ userObj }) => {
     const [nweet, setNweet] = useState("");
     const [nweets, setNweets] = useState([]);
-    const [attachment, setAttachment] = useState();
+    const [attachment, setAttachment] = useState("");
     useEffect(() => {
         const q = query(collection(dbService, "nweets"),
         orderBy("createdAt")
@@ -21,16 +23,25 @@ const Home = ({ userObj }) => {
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
+        let attachmentUrl = "";
+        if(attachment !== "") {
+            const attachmentRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
+            const response = await uploadString(attachmentRef, attachment, "data_url");
+            attachmentUrl = await getDownloadURL(response.ref);
+        }
+        const nweetObj = {
+            text: nweet,
+            createdAt: serverTimestamp(),
+            creatorId: userObj.uid,
+            attachmentUrl
+        };
         try{
-            await addDoc(collection(dbService, "nweets"), {
-                text: nweet,
-                createdAt: serverTimestamp(),
-                creatorId: userObj.uid,
-            })
+            await addDoc(collection(dbService, "nweets"), nweetObj)
         } catch (error) {
             console.log("Error adding document: ", error);
         }
         setNweet("");
+        setAttachment("");
     };
     const onChange = (event) => {
         const { target:{value}} = event;
@@ -57,7 +68,7 @@ const Home = ({ userObj }) => {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <input type="text" onChange={onChange} placeholder="What's on your mind?" maxLength={120} />
+                <input type="text" value={nweet} onChange={onChange} placeholder="What's on your mind?" maxLength={120} />
                 <input type="file" accept="image/*" onChange={onFileChange} ref={fileInput} />
                 <input type="submit" value="Nweet" />
                 {attachment && (
