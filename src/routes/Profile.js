@@ -4,7 +4,7 @@ import { updateProfile } from "@firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 
-const Profile = ({ userObj }) => {
+const Profile = ({ refreshUser, userObj }) => {
     const navigate  = useNavigate();
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
     const onLogOutClick = () => {
@@ -33,9 +33,9 @@ const Profile = ({ userObj }) => {
     };
     const onSubmit = async (event) => {
         event.preventDefault();
-        console.log(`Display name = ${userObj.displayName}`);
         if(userObj.displayName !== newDisplayName) {
             await updateProfile(userObj, {displayName: newDisplayName});
+            refreshUser();
         }
     };
     return (
