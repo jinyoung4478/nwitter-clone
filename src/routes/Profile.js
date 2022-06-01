@@ -22,9 +22,12 @@ const Profile = ({ refreshUser, userObj }) => {
             console.log(doc.id, " => ", doc.data());
         });
     };
+    /* useEffect(() => {
+        getMyNweets();
+    }, []); */
     useEffect(() => {
         getMyNweets();
-    }, []);
+    });
     const onChange = (event) => {
         const {
             target: { value },
