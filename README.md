@@ -13,8 +13,6 @@
 
 > Go to [Nwitter Clone](https://jinyoung4478.github.io/nwitter-clone/)
 
-![nwitter-home](https://user-images.githubusercontent.com/102174146/171821582-0ef1c542-adee-476c-9744-7e6db40b20da.jpg)
+<img  src="https://user-images.githubusercontent.com/102174146/171821582-0ef1c542-adee-476c-9744-7e6db40b20da.jpg" width="400" height="400">
 
-<img  src="https://user-images.githubusercontent.com/102174146/171821582-0ef1c542-adee-476c-9744-7e6db40b20da.jpg" width="300" height="300">
-
-![nwitter-main](https://user-images.githubusercontent.com/102174146/171821277-3bc66884-5e1d-4b59-80e5-8bf7b25c1ea4.jpg){: width="100px" heigth="100px"}
+<img src="https://user-images.githubusercontent.com/102174146/171821277-3bc66884-5e1d-4b59-80e5-8bf7b25c1ea4.jpg" width="400" height="400">
