@@ -35,7 +35,6 @@ function App() {
       updateProfile: (args) => updateProfile(user, {displayName:user.displayName}),
     });
     setUserObj({displayName: 'hellO'}); */
-    console.log(refresh);
     setRefresh(userObj.displayName);
   }
   return (
